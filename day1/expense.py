@@ -9,7 +9,8 @@ with open("input.txt") as file_in:
 
 
 for num in nums:
-    for innerNum in nums:
-        if num + innerNum == 2020:
-            print(num * innerNum)
-            exit()
+    for secNum in nums:
+        for triNum in nums:
+            if num + secNum + triNum == 2020:
+                print(num * secNum * triNum)
+                exit()
