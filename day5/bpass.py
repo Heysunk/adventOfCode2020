@@ -5,6 +5,23 @@ import re
 
 validBpassRegex = re.compile('^[FB]{7}[RL]{3}$')
 
+
+# An empty seat is definied as a seatID not in the list but the ID before and after it exists
+def locateMySeat(seatIDs):
+    prevID = seatIDs[0]
+    count = 0
+    for seat in seatIDs:
+        if seat - prevID == 2:
+            return seat - 1
+        else:
+            prevID = seat
+
+        count += 1
+
+
+
+
+
 def narrowLoc(lower, upper, tightenTowardsUpper):
     size = upper - lower
     newSize = size/2.0
@@ -50,12 +67,13 @@ with open("input.txt") as file_in:
             raise AssertionError("input data contains invalid bpass: " + line)
         bpasses.append(line)
 
+seatIDs = list()
 
-highestSeatID = 0
 for bpass in bpasses:
     seatID = determineSeatID(bpass)
-    if seatID > highestSeatID:
-        highestSeatID = seatID
+    seatIDs.append(seatID)
 
+seatIDs.sort()
+mySeat = locateMySeat(seatIDs)
 
-print(highestSeatID)
+print(mySeat)
