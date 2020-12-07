@@ -1,12 +1,7 @@
-import math
-
-
-
 def calcUniqInGroup(members):
     answers = dict()
     for member in members:
         for answer in member:
-
             if answer in answers:
                 answers[answer] += 1
             else:
@@ -18,11 +13,6 @@ def calcUniqInGroup(members):
         if value == numGroupMembers:
             correctAnswers += 1
     return correctAnswers
-
-
-
-
-
 
 
 groups = []
